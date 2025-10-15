@@ -58,6 +58,11 @@ public:
 	void Draw();
 
 	/**
+	 * @brief リロード.
+	 */
+	void Reload() override {};
+
+	/**
 	 * @brief プレイヤー生成
 	 * @param [in]プレイヤーポインタ
 	 * @return プレイヤーポインタ

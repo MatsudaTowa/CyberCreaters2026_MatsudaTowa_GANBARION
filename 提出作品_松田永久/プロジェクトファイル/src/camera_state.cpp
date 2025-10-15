@@ -10,21 +10,21 @@
 //=============================================
 //自由視点
 //=============================================
-void CCameraState::FreeView(CCamera* camera)
+void CCameraState::FreeView([[maybe_unused]] CCamera* camera)
 {
 }
 
 //=============================================
 //三人称の状態
 //=============================================
-void CCameraState::ThirdView(CCamera* camera)
+void CCameraState::ThirdView([[maybe_unused]] CCamera* camera)
 {
 }
 
 //=============================================
 //ウルトの状態
 //=============================================
-void CCameraState::Ult(CCamera* camera)
+void CCameraState::Ult([[maybe_unused]] CCamera* camera)
 {
 }
 
@@ -56,10 +56,10 @@ void CThirdView::ThirdView(CCamera* camera)
 
 	camera->ThirdViewCamera();
 
+#ifdef _DEBUG
+
 	//キーボード情報取得
 	CInputKeyboard* pKeyboard = CManager::GetInstance()->GetKeyboard();
-
-#ifdef _DEBUG
 	if (pKeyboard->GetTrigger(DIK_B))
 	{
 		camera->ChangeCameraState(new CFreeView);

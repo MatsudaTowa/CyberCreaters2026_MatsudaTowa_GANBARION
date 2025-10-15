@@ -10,6 +10,7 @@
 #include "wave.h"
 #include "game.h"
 #include "active_scene_state.h"
+#include "pause_select_setting.h"
 
 //=============================================
 // コンストラクタ
@@ -118,6 +119,7 @@ void CGamePause::Pause(CActiveScene* active_scene)
 void CGamePause::HandlePoseSelection(CActiveScene* active_scene)
 {
 	CPauseSelect* pSelect = GetSelectUI(GetSelect());
+
 	if (typeid(*pSelect) == typeid(CPauseSelectContinue))
 	{
 		active_scene->ChangeState(new CGameNormal);
@@ -128,11 +130,12 @@ void CGamePause::HandlePoseSelection(CActiveScene* active_scene)
 		CManager::GetInstance()->GetFade()->SetFade(CScene::MODE::MODE_GAME);
 		return;
 	}
-	if (typeid(*pSelect) == typeid(CPauseSelectQuit))
+	if (typeid(*pSelect) == typeid(CPauseSelectSetting))
 	{
-		CManager::GetInstance()->GetFade()->SetFade(CScene::MODE::MODE_TITLE);
+		active_scene->ChangeState(new CGameSetting);
 		return;
 	}
+	CPause::HandlePoseSelection(active_scene);
 }
 
 //=============================================
@@ -141,4 +144,18 @@ void CGamePause::HandlePoseSelection(CActiveScene* active_scene)
 void CGamePause::CancelPause(CActiveScene* active_scene)
 {
 	active_scene->ChangeState(new CGameNormal);
+}
+
+//=============================================
+// 設定処理
+//=============================================
+void CGameSetting::Setting(CActiveScene* active_scene)
+{
+	CSetting::Setting(active_scene);
+	//入力デバイス取得
+	CInputKeyboard* pKeyboard = CManager::GetInstance()->GetKeyboard();
+	if (pKeyboard->GetTrigger(DIK_P))
+	{
+		active_scene->ChangeState(new CGameNormal);
+	}
 }

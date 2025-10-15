@@ -45,11 +45,6 @@ public:
 	 * @brief 更新
 	 */
 	void Update();
-	/**
-	 * @brief 現在のウルトUI設定
-	 * @param [in]プレイヤーのポインタ
-	 */
-	void SetCurrentUlt_UI(CActivePlayer* player);
 
 	/**
 	 * @brief リセット関数

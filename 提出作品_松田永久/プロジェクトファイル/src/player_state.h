@@ -25,22 +25,22 @@ public:
 	 * @brief 通常
 	 * @param [in]動くプレイヤーポインタ
 	 */
-	virtual void Default(CActivePlayer* player);
+	virtual void Default([[maybe_unused]] CActivePlayer* player) {};
 	/**
 	 * @brief ウルト
 	 * @param [in]動くプレイヤーポインタ
 	 */
-	virtual void Ult(CActivePlayer* player);
+	virtual void Ult([[maybe_unused]] CActivePlayer* player) {};
 	/**
 	 * @brief 回避
 	 * @param [in]動くプレイヤーポインタ
 	 */
-	virtual void Avoidance(CActivePlayer* player);
+	virtual void Avoidance([[maybe_unused]] CActivePlayer* player) {};
 	/**
 	 * @brief 吹っ飛ばされ
 	 * @param [in]動くプレイヤーポインタ
 	 */
-	virtual void Blown(CActivePlayer* player);
+	virtual void Blown([[maybe_unused]] CActivePlayer* player) {};
 };
 
 //=============================================

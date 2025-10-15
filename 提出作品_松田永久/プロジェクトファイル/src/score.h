@@ -58,7 +58,7 @@ public:
 	 * @brief スコア設定
 	 * @param [in]スコア
 	 */
-	void SetScore(int nScore);
+	void SetScore();
 
 	/**
 	 * @brief スコア取得

@@ -55,7 +55,7 @@ CBlink_UI::~CBlink_UI()
 //=============================================
 //èâä˙âª
 //=============================================
-HRESULT CBlink_UI::Init(CActivePlayer* player)
+HRESULT CBlink_UI::Init()
 {
 	m_BlinkUIPos = NUMBER_POS;
 
@@ -88,7 +88,7 @@ HRESULT CBlink_UI::Init(CActivePlayer* player)
 	{
 		if (m_pCurrentBlink[nCnt] == nullptr)
 		{
-			m_pCurrentBlink[nCnt] = CNumber_2D::Create(m_BlinkUIPos, NUMBER_SIZE);
+			m_pCurrentBlink[nCnt] = CNumber_2D::Create(m_BlinkUIPos, NUMBER_SIZE, new CNumber_2D);
 			//ç¿ïWÇÇ∏ÇÁÇ∑
 			m_BlinkUIPos.x -= DIGIT_SHIFT;
 		}

@@ -13,6 +13,12 @@
 #include "game.h"
 #include "smoke_grenade.h"
 #include "camera_state.h"
+#include "reload_UI.h"
+#include "blink_UI.h"
+#include "smoke_UI.h"
+#include"ammo_UI.h"
+#include"life_UI.h"
+#include "ult_UI.h"
 
 //スポーン位置
 const D3DXVECTOR3 CActivePlayer::PLAYER_SPAWN_POS = { 0.0f, 0.5f, -400.0f };
@@ -38,7 +44,6 @@ m_IgnoreColisionCnt(INT_ZERO),	//当たり判定無効カウントリセット
 m_SmokeRecastCnt(INT_ZERO),		//スモーク復活カウントリセット
 m_DeathCnt(INT_ZERO),			//死亡カウントリセット
 m_Stamina(INT_ZERO),			//スタミナ
-m_isRelorad(false),				//リロードしていない状態に
 m_isSmoke(false),				//スモークを使っていない状態に
 m_isEnemyColision(true),		//エネミーと判定をとる状態に
 m_pHitCameraEffect(),			//カメラのエフェクトのポインタ初期化
@@ -49,7 +54,8 @@ m_pAmmoUI(),					//残弾数UIの初期化
 m_pLifeUI(),					//体力UIの初期化
 m_pUltUI(),						//ウルトのUI初期化
 m_pSmokeUI(),					//スモークのUI初期化
-m_pBlinkUI()					//ブリンクのUI初期化
+m_pBlinkUI(),					//ブリンクのUI初期化
+m_pReloadUI()					//リロードのUI初期化
 {
 }
 
@@ -117,9 +123,6 @@ HRESULT CActivePlayer::Init()
 	//UI生成
 	CreateUI();
 
-	CRenderer* pRender = CManager::GetInstance()->GetRenderer();
-	LPDIRECT3DDEVICE9 pDevice = pRender->GetDevice();
-
 	//移動量初期化
 	D3DXVECTOR3 move = VEC3_RESET_ZERO;
 
@@ -169,7 +172,7 @@ void CActivePlayer::CreateUI()
 	{
 		m_pBlinkUI = new CBlink_UI;
 
-		m_pBlinkUI->Init(this);
+		m_pBlinkUI->Init();
 	}
 	//ウルトUI初期化
 	if (m_pUltUI == nullptr)
@@ -226,6 +229,11 @@ void CActivePlayer::Uninit()
 	{
 		m_pSmokeUI->Uninit();
 		m_pSmokeUI = nullptr;
+	}
+	if (m_pReloadUI != nullptr)
+	{
+		m_pReloadUI->Uninit();
+		m_pReloadUI = nullptr;
 	}
 	if (m_pAvoidance != nullptr)
 	{
@@ -355,11 +363,38 @@ void CActivePlayer::Update()
 		m_Reticle->SetPos(D3DXVECTOR3(pCamera->GetPosR().x + sinf(GetRot().y + D3DX_PI), pCamera->GetPosR().y - RETICLE_CORRECTION_VALUE, pCamera->GetPosR().z + cosf(GetRot().y + D3DX_PI)));
 		m_Reticle->Update();
 	}
+}
 
-	if (m_isRelorad)
+//=============================================
+//リロード処理
+//=============================================
+void CActivePlayer::Reload()
+{
+	bool isReload = GetReload();
+	if (isReload)
 	{//リロード中だったら
-		m_isRelorad = GetGun()->Reload(); //リロードし終わったらfalseが返ってくる
+		isReload = GetGun()->Reload(); //リロードし終わったらfalseが返ってくる
+		if (!isReload)
+		{
+			CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_SE_RELOAD);
+
+			if (m_pReloadUI == nullptr)
+			{
+				return;
+			}
+			m_pReloadUI->Uninit();
+			m_pReloadUI = nullptr;;
+		}
+		else if (isReload)
+		{
+			if (m_pReloadUI == nullptr)
+			{
+				m_pReloadUI = new CReload_UI;
+				m_pReloadUI->Init();
+			}
+		}
 	}
+	SetReload(isReload);
 }
 
 //=============================================
@@ -381,12 +416,6 @@ void CActivePlayer::SetUI()
 	{
 		m_pBlinkUI->SetCurrentBlink_UI(this);
 	}
-
-	if (m_pUltUI != nullptr)
-	{
-		m_pUltUI->SetCurrentUlt_UI(this);
-	}
-
 	if (m_pSmokeUI != nullptr)
 	{
 		m_pSmokeUI->SetCurrentSmoke_UI(this);
@@ -633,7 +662,7 @@ void CActivePlayer::Input()
 		if (GetGun()->GetAmmo() < CAssultRifle::DEFAULT_AR_MAG_SIZE)
 		{
 			//リロード
-			m_isRelorad = true;
+			SetReload(true);
 		}
 	}
 
@@ -659,6 +688,10 @@ void CActivePlayer::ChangePlayerState(CPlayerState* state)
 	{
 		delete m_pPlayerState;
 		m_pPlayerState = state;
+	}
+	else if (m_pPlayerState == nullptr)
+	{
+		delete state;
 	}
 }
 
@@ -702,7 +735,7 @@ void CActivePlayer::ColisionEnemy()
 					//安全にダウンキャスト
 					CEnemy* pEnemy = dynamic_cast<CEnemy*>(pObj);
 
-					CheckColisionEnemy(pEnemy, nPartsCnt, pos, Minpos, Maxpos);
+					CheckColisionEnemy(pEnemy, pos, Minpos, Maxpos);
 				}
 			}
 		}
@@ -712,7 +745,7 @@ void CActivePlayer::ColisionEnemy()
 //=============================================
 //敵との当たり判定
 //=============================================
-void CActivePlayer::CheckColisionEnemy(CEnemy* pEnemy, int nPartsCnt, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos)
+void CActivePlayer::CheckColisionEnemy(CEnemy* pEnemy, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos)
 {
 	for (int nEnemyPartsCnt = INT_ZERO; nEnemyPartsCnt < pEnemy->GetNumParts(); nEnemyPartsCnt++)
 	{

@@ -70,22 +70,13 @@ void CTitle_Screen::Update()
 
 	CTexture* pTexture = CManager::GetInstance()->GetTexture();
 
-	CInputPad* pPad = CManager::GetInstance()->GetPad();
-
 	switch (m_UItype)
 	{
 	case CTitle_Screen::TITLE_UI::UI_TITLE_ROGO:
 		BindTexture(pTexture->GetAddress(pTexture->Regist(&ROGO_TEXTURE_NAME)));
 		break;
 	case CTitle_Screen::TITLE_UI::UI_TITLE_PRESS_BUTTON:
-		if (pPad->GetConnet())
-		{//padÚ‘±’†
-			BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_A_TEXTURE_NAME)));
-		}
-		else if (!pPad->GetConnet())
-		{//padÚ‘±‚µ‚Ä‚È‚¢
-			BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
-		}
+		BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
 		break;
 	default:
 		break;
@@ -118,22 +109,13 @@ CTitle_Screen* CTitle_Screen::Create(D3DXVECTOR3 pos, D3DXVECTOR2 size, TITLE_UI
 
 	pTitle_Screen->m_UItype = type;
 
-	CInputPad* pPad = CManager::GetInstance()->GetPad();
-
 	switch (pTitle_Screen->m_UItype)
 	{
 	case CTitle_Screen::TITLE_UI::UI_TITLE_ROGO:
 		pTitle_Screen->BindTexture(pTexture->GetAddress(pTexture->Regist(&ROGO_TEXTURE_NAME)));
 		break;
 	case CTitle_Screen::TITLE_UI::UI_TITLE_PRESS_BUTTON:
-		if (pPad->GetConnet())
-		{
-			pTitle_Screen->BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_A_TEXTURE_NAME)));
-		}
-		else if (!pPad->GetConnet())
-		{
-			pTitle_Screen->BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
-		}
+		pTitle_Screen->BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
 		break;
 	default:
 		break;

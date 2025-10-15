@@ -148,10 +148,10 @@ bool CAttack_Manager::HitPlayer()
 	//サイズ取得
 	D3DXVECTOR3 Attacksize = GetSize();
 
-	for (int nCnt = 0; nCnt < MAX_OBJECT; nCnt++)
+	for (int i = 0; i < MAX_OBJECT; i++)
 	{
 		//オブジェクト取得
-		CObject* pObj = CObject::Getobject(CPlayer::PLAYER_PRIORITY, nCnt);
+		CObject* pObj = CObject::Getobject(CPlayer::PLAYER_PRIORITY, i);
 		if (pObj == nullptr)
 		{//ヌルポインタなら
 			//オブジェクトを探し続ける
@@ -172,14 +172,14 @@ bool CAttack_Manager::HitPlayer()
 		CActivePlayer* pPlayer = dynamic_cast<CActivePlayer*>(pObj);
 
 		CColision::COLISION ColisionCheck;
-		for (int nCnt = 0; nCnt < pPlayer->GetNumParts(); nCnt++)
+		for (int j = 0; j < pPlayer->GetNumParts(); j++)
 		{
 			//パーツのオフセットpos
-			D3DXVECTOR3 PartsPos = { pPlayer->m_apModel[nCnt]->GetMtxWorld()._41
-			,pPlayer->m_apModel[nCnt]->GetMtxWorld()._42
-			,pPlayer->m_apModel[nCnt]->GetMtxWorld()._43 };
+			D3DXVECTOR3 PartsPos = { pPlayer->m_apModel[j]->GetMtxWorld()._41
+			,pPlayer->m_apModel[j]->GetMtxWorld()._42
+			,pPlayer->m_apModel[j]->GetMtxWorld()._43 };
 
-			ColisionCheck = CManager::GetInstance()->GetColision()->CheckPolygonModelColisionSphere(Attackpos, Attacksize, PartsPos, pPlayer->m_apModel[nCnt]->GetMin(), pPlayer->m_apModel[nCnt]->GetMax());
+			ColisionCheck = CManager::GetInstance()->GetColision()->CheckPolygonModelColisionSphere(Attackpos, Attacksize, PartsPos, pPlayer->m_apModel[j]->GetMin(), pPlayer->m_apModel[j]->GetMax());
 
 			if (ColisionCheck != CColision::COLISION::COLISON_NONE)
 			{//当たってたら
@@ -189,6 +189,7 @@ bool CAttack_Manager::HitPlayer()
 			}
 		}
 	}
+	return false;
 }
 
 //=============================================

@@ -52,4 +52,16 @@ public:
 private:
 };
 
+/** @brief 設定クラス */
+class CGameSetting :public CSetting
+{
+public:
+	/**
+	* @brief 設定処理
+	* @param [in]アクティブシーンポインタ
+	*/
+	void Setting(CActiveScene* active_scene) override;
+private:
+};
+
 #endif // !_GAME_STATE_H_

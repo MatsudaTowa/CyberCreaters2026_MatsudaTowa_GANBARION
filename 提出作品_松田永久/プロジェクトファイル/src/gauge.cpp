@@ -92,8 +92,8 @@ CGauge_2D* CGauge_2D::Create(D3DXVECTOR3 pos, D3DXVECTOR2 size, GAUGE2D_TYPE typ
 	case GAUGE_TYPE_LIFE:
 		pGauge = new CGauge_Life;
 		break;
-	case GAUGE_TYPE_STAMINA:
-		pGauge = new CGauge_Stamina;
+	case GAUGE_TYPE_SENS:
+		pGauge = new CGauge_Sens;
 		break;
 	default:
 		assert(false);
@@ -173,21 +173,21 @@ void CGauge_Life::Draw()
 //=============================================
 //コンストラクタ
 //=============================================
-CGauge_Stamina::CGauge_Stamina(int nPriority):CGauge_2D(nPriority)
+CGauge_Sens::CGauge_Sens(int nPriority):CGauge_2D(nPriority)
 {
 }
 
 //=============================================
 //デストラクタ
 //=============================================
-CGauge_Stamina::~CGauge_Stamina()
+CGauge_Sens::~CGauge_Sens()
 {
 }
 
 //=============================================
 //初期化
 //=============================================
-HRESULT CGauge_Stamina::Init()
+HRESULT CGauge_Sens::Init()
 {
 	//親クラスの初期化
 	CGauge_2D::Init();
@@ -197,7 +197,7 @@ HRESULT CGauge_Stamina::Init()
 //=============================================
 //終了
 //=============================================
-void CGauge_Stamina::Uninit()
+void CGauge_Sens::Uninit()
 {
 	//親クラスの終了
 	CGauge_2D::Uninit();
@@ -206,7 +206,7 @@ void CGauge_Stamina::Uninit()
 //=============================================
 //更新
 //=============================================
-void CGauge_Stamina::Update()
+void CGauge_Sens::Update()
 {
 	//親クラスの更新
 	CGauge_2D::Update();
@@ -215,7 +215,7 @@ void CGauge_Stamina::Update()
 //=============================================
 //描画
 //=============================================
-void CGauge_Stamina::Draw()
+void CGauge_Sens::Draw()
 {
 	//親クラスの描画
 	CGauge_2D::Draw();

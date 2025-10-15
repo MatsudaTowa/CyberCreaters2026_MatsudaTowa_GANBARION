@@ -98,27 +98,6 @@ private:
 };
 
 //=============================================
-//敵のスタンのストラテジー
-//=============================================
-class CBossStan
-{
-public:
-	/**
-	 * @brief コンストラクタ
-	 */
-	CBossStan();
-	/**
-	 * @brief デストラクタ
-	 */
-	~CBossStan();
-	/**
-	 * @brief スタン処理
-	 * @param [in]ボスのポインタ
-	 */
-	void Stan(CBossEnemy* boss);
-};
-
-//=============================================
 //混乱のストラテジー
 //=============================================
 class CBossConfusion
@@ -180,6 +159,7 @@ public:
 
 private:
 	static const int SHOT_STATE_FRAME = 90; //射撃フレーム
+	static constexpr float CORRECTION_Y = 5.0f; //yの補正値
 
 	int m_nStateChangeCnt;//ステート変更カウント
 };

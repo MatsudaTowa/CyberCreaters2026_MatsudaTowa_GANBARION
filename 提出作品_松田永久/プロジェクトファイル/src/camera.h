@@ -79,6 +79,16 @@ public:
 	{
 		m_rot = rot;
 	}
+
+	/**
+	 * @brief 方向の移動量設定
+	 * @param [in]方向
+	 */
+	inline void SetRotMove(D3DXVECTOR3 rot_move)
+	{
+		m_rotmove = rot_move;
+	}
+
 	/**
 	 * @brief 視点設定
 	 * @param [in]視点位置
@@ -121,6 +131,15 @@ public:
 	inline D3DXVECTOR3 GetRot()
 	{
 		return m_rot;
+	}
+
+	/**
+	 * @brief 方向の移動量取得
+	 * @return 方向の移動量
+	 */
+	inline D3DXVECTOR3 GetRotMove()
+	{
+		return m_rotmove;
 	}
 
 	/**
@@ -203,14 +222,16 @@ private:
 	static constexpr float THIRDVIEW_CORRECT_Y = 105.0f; //サードパーソンビュー時の補正値Y
 	static constexpr float THIRDVIEW_CORRECT_Z = 20.0f; //サードパーソンビュー時の補正値Z
 
-	static constexpr float DEFAULT_MOUSE_SENS = 0.001f; //デフォルトのマウス感度
+	static constexpr float DEFAULT_MOUSE_SENS = 0.00505f; //デフォルトのマウス感度
 	static constexpr float MAX_MOUSE_SENS = 0.01f;		//最大のマウス感度
 	static constexpr float MIN_MOUSE_SENS = 0.0001f;	//最小のマウス感度
 
 	static constexpr float TURN_SPEED = 0.02f; //カメラの回転スピード
 
-	static constexpr float MAX_TURN_X = 0.5f; //サードパーソンビュー時のXの最大可動域
-	static constexpr float MIN_TURN_X = -0.15f; //サードパーソンビュー時のXの最小可動域
+	static constexpr float MAX_TURN_X = 0.45f; //サードパーソンビュー時のXの最大可動域
+	static constexpr float MIN_TURN_X = -0.45f; //サードパーソンビュー時のXの最小可動域
+
+	static constexpr float ROT_MOVE_FRICTION = 0.3f; //移動抵抗
 
 	/**
 	 * @brief カメラ回転処理

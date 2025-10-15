@@ -3,7 +3,7 @@
 //=============================================
 //コンストラクタ
 //=============================================
-CTutorialPlayer::CTutorialPlayer(int nPriority)
+CTutorialPlayer::CTutorialPlayer(int nPriority):CActivePlayer(nPriority)
 {
 }
 

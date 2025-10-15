@@ -119,8 +119,7 @@ void CTutorial::Active()
 	}
 
 	CInputKeyboard* pKeyboard = CManager::GetInstance()->GetKeyboard();
-	CInputPad* pPad = CManager::GetInstance()->GetPad();
-	if (pKeyboard->GetTrigger(DIK_RETURN) || pPad->GetTrigger(CInputPad::JOYKEY::JOYKEY_A))
+	if (pKeyboard->GetTrigger(DIK_RETURN))
 	{
 		CManager::GetInstance()->GetFade()->SetFade(CScene::MODE::MODE_GAME);
 	}

@@ -45,6 +45,7 @@ private:
 	static const int STAY_FRAME = 60; //正面を見て止まる時間
 	static const int RIGHT_PARCENT = 50; //0以上50未満なら右に
 	static const int LEFT_PARCENT = 100; //50以上100未満なら左に
+	static const int PROBABILITY_SCALE = 5;	//確率調整値
 
 	int m_TransitionCnt;
 	int m_nRight;//左に行く確率

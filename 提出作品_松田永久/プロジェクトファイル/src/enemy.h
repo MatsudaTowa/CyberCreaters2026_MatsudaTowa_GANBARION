@@ -96,6 +96,11 @@ public:
 	virtual void MediumUltHit(D3DXVECTOR3 UltPos, int nDamage);
 
 	/**
+	 * @brief リロード
+	 */
+	void Reload()override {};
+
+	/**
 	 * @brief プレイヤーとレイの判定
 	 * @param [in]方向
 	 * @param [in]キャラクターポインタ

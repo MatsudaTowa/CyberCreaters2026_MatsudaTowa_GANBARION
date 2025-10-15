@@ -101,7 +101,7 @@ public:
 	 * @param [in]最大の頂点座標
 	 * @param [in]最小の頂点座標
 	 */
-	void CheckColisionPlayer(CActivePlayer* pPlayer, int nPartsCnt, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos);
+	void CheckColisionPlayer(CActivePlayer* pPlayer, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos);
 	/**
 	 * @brief ウルトヒット処理
 	 * @param [in]ウルトの座標

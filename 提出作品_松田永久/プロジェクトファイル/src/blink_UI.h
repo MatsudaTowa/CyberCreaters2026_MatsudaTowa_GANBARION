@@ -32,10 +32,9 @@ public:
 	~CBlink_UI();
 	/**
 	 * @brief 初期化
-	 * @param [in]プレイヤーポインタ
 	 * @return 成功したか
 	 */
-	HRESULT Init(CActivePlayer* player);
+	HRESULT Init();
 	/**
 	 * @brief 終了
 	 */

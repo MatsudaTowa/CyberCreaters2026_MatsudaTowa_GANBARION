@@ -92,10 +92,9 @@ void CTitle::Update()
 {
 	//インプット取得
     CInputKeyboard* pKeyboard = CManager::GetInstance()->GetKeyboard();
-    CInputPad* pPad = CManager::GetInstance()->GetPad();
     CInputMouse* pMouse = CManager::GetInstance()->GetMouse();
 
-    if (pKeyboard->GetTrigger(DIK_RETURN) || pPad->GetTrigger(CInputPad::JOYKEY::JOYKEY_A) || pMouse->GetTrigger(0))
+    if (pKeyboard->GetTrigger(DIK_RETURN) || pMouse->GetTrigger(0))
     {
 		//チュートリアルに遷移
 		CManager::GetInstance()->GetFade()->SetFade(CScene::MODE::MODE_TUTORIAL);

@@ -7,42 +7,6 @@
 #include "character_state.h"
 
 //=============================================
-//最初に呼ばれる関数
-//=============================================
-void CCharacterState::Start(CCharacter* character)
-{
-}
-
-//=============================================
-//キャラクターのショット
-//=============================================
-void CCharacterState::Shot(CBullet::BULLET_ALLEGIANCE Allegiance, CCharacter* character)
-{
-}
-
-//=============================================
-//キャラクターのスタン
-//=============================================
-void CCharacterState::Stan(CCharacter* character)
-{
-}
-
-
-//=============================================
-//キャラクターの混乱
-//=============================================
-void CCharacterState::Confusion(CCharacter* character)
-{
-}
-
-//=============================================
-//キャラクターの動き
-//=============================================
-void CCharacterState::Move(CCharacter* character)
-{
-}
-
-//=============================================
 //キャラクターのショット
 //=============================================
 void CShotState::Shot(CBullet::BULLET_ALLEGIANCE Allegiance, CCharacter* character)
@@ -65,7 +29,7 @@ void CMoveState::Move(CCharacter* character)
 //=============================================
 //最初に呼ばれる関数
 //=============================================
-void CStanState::Start(CCharacter* character)
+void CStanState::Start([[maybe_unused]] CCharacter* character)
 {
 	//カウントリセット
 	m_StanCnt = 0;

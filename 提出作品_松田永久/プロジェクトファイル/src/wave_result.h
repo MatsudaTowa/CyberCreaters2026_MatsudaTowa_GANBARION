@@ -55,9 +55,8 @@ public:
 	/**
 	 * @brief 生成
 	 * @param [in]ウェーブ
-	 * @param [in]ファイルネーム
 	 */
-	inline void Create(CWave::WAVE wave, char* pFileName)
+	inline void Create(CWave::WAVE wave)
 	{
 		SetNextWave(wave);
 	}

@@ -88,7 +88,7 @@ void CPlayer::Update()
 		m_apModel[nCnt]->SetOldPos(m_apModel[nCnt]->GetPos());
 	}
 
-	Motion(GetNumParts()); //モーション処理
+	Motion(); //モーション処理
 	//CCharacter::HitBlock(NUM_PARTS);
 }
 
@@ -124,8 +124,6 @@ void CPlayer::Draw()
 //=============================================
 CPlayer* CPlayer::Create(CPlayer* player)
 {
-	CModel* pModel = CManager::GetInstance()->GetModel();
-
 	CPlayer* pPlayer = player;
 
 	// nullならnullを返す

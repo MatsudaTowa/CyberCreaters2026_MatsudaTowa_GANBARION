@@ -10,7 +10,7 @@
 //色
 const D3DXCOLOR CPauseSelect::DEFAULT_COLOR = { 0.3f,0.3f,0.3f,1.0f };
 //サイズ
-const D3DXVECTOR2 CPauseSelect::SIZE = { 180.0f,50.0f };
+const D3DXVECTOR2 CPauseSelect::SIZE = { 140.0f,30.0f };
 
 //=============================================
 // コンストラクタ

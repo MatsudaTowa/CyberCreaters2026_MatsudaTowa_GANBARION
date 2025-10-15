@@ -48,9 +48,10 @@ public:
 	 * @brief 生成
 	 * @param [in]位置
 	 * @param [in]サイズ
+	 * @param [in]確保するナンバーのポインタ
 	 * @return ナンバー2D
 	 */
-	static CNumber_2D* Create(D3DXVECTOR3 pos ,D3DXVECTOR2 size);
+	static CNumber_2D* Create(D3DXVECTOR3 pos ,D3DXVECTOR2 size,CNumber_2D* number);
 
 	/**
 	 * @brief 数字の設定

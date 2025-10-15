@@ -224,7 +224,7 @@ const std::string CScoreUIBox::TEXTURE_NAME = "data\\TEXTURE\\UI_box_002.png";
 //=============================================
 //コンストラクタ
 //=============================================
-CScoreUIBox::CScoreUIBox(int nPriority)
+CScoreUIBox::CScoreUIBox(int nPriority):CPlayerUIBox(nPriority)
 {
 }
 

@@ -133,7 +133,6 @@ void CResult::Update()
 {
     //各インプット取得
     CInputKeyboard* pKeyboard = CManager::GetInstance()->GetKeyboard();
-    CInputPad* pPad = CManager::GetInstance()->GetPad();
     CInputMouse* pMouse = CManager::GetInstance()->GetMouse();
 
     for (int nCnt = INT_ZERO; nCnt < CManager::NUM_RESULT_FILE + 1; nCnt++)
@@ -145,8 +144,7 @@ void CResult::Update()
     }
 
     if (pKeyboard->GetTrigger(DIK_RETURN) 
-        || pMouse->GetTrigger(0)
-        || pPad->GetTrigger(CInputPad::JOYKEY::JOYKEY_A))
+        || pMouse->GetTrigger(0))
     {
         //タイトルに戻る
         CManager::GetInstance()->GetFade()->SetFade(CScene::MODE::MODE_TITLE);

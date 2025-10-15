@@ -12,7 +12,7 @@ const std::string CHitCameraEffectModerate::TEXTURE_NAME = "data\\TEXTURE\\hit_c
 //=============================================
 //コンストラクタ
 //=============================================
-CHitCameraEffectModerate::CHitCameraEffectModerate(int nPriority)
+CHitCameraEffectModerate::CHitCameraEffectModerate(int nPriority):CHitCameraEffect(nPriority)
 {
 }
 

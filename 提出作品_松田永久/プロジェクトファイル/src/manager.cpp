@@ -27,7 +27,6 @@ m_pKeyboard(nullptr),	//キーボードのポインタ
 m_pLight(nullptr),		//ライトのポインタ
 m_pModel(nullptr),		//モデルポインタ
 m_pMouse(nullptr),		//マウスのポインタ
-m_pPad(nullptr),		//padのポインタ
 m_pRenderer(nullptr),	//レンダラーポインタ
 m_pScene(nullptr),		//シーンポインタ
 m_pSound(nullptr),		//サウンドポインタ
@@ -74,16 +73,6 @@ HRESULT CManager::Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindow)
 
 		//マウスの初期化処理
 		if (FAILED(m_pMouse->Init(hInstance, hWnd)))
-		{
-			return E_FAIL;
-		}
-	}
-	if (m_pPad == nullptr)
-	{
-		m_pPad = new CInputPad();
-
-		//マウスの初期化処理
-		if (FAILED(m_pPad->Init(hInstance, hWnd)))
 		{
 			return E_FAIL;
 		}
@@ -205,9 +194,7 @@ void CManager::Uninit()
 	m_pKeyboard->Uninit();
 	//マウスの終了処理
 	m_pMouse->Uninit();
-	//Padの終了処理
-	m_pPad->Uninit();
-
+	
 	if (m_pFade != nullptr)
 	{
 		m_pFade->Uninit();
@@ -228,7 +215,6 @@ void CManager::Update()
 	m_pCamera->Update();
 	m_pKeyboard->Update();
 	m_pMouse->Update();
-	m_pPad->Update();
 
 	if (m_pFade != nullptr)
 	{
@@ -336,14 +322,6 @@ CInputKeyboard* CManager::GetKeyboard()
 CInputMouse* CManager::GetMouse()
 {
 	return m_pMouse;
-}
-
-//=============================================
-//マウス情報取得
-//=============================================
-CInputPad* CManager::GetPad()
-{
-	return m_pPad;
 }
 
 //=============================================

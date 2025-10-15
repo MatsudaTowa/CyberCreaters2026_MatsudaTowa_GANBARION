@@ -64,7 +64,7 @@ public:
 		return m_alpha;
 	}
 private:
-	static const std::string TEXTURE_NAME;	//テクスチャの名前
+	static const std::string TEXTURE_NAME;			//テクスチャの名前
 	static const D3DXCOLOR COLOR;					//初期色
 	static constexpr float SUB_ALPHA = 0.01f;		//アルファ値減算
 

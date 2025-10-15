@@ -26,7 +26,7 @@ const D3DXVECTOR2 CAmmo_UI::DEFAULT_AMMO_SIZE = { 10.0f, 20.0f };
 //コンストラクタ
 //=============================================
 CAmmo_UI::CAmmo_UI():
-m_nDefaultAmmo(FLOAT_ZERO),			//通常の弾数
+m_nDefaultAmmo(INT_ZERO),			//通常の弾数
 m_CurrentAmmoPos(VEC3_RESET_ZERO),	//現在の弾数表示位置
 m_DefaultAmmoPos(VEC3_RESET_ZERO),	//一マガジンごとの弾数表示位置
 m_pCurrentAmmo(),					//現在の弾数の数字ポインタ
@@ -61,14 +61,14 @@ HRESULT CAmmo_UI::Init()
 	{
 		if (m_pCurrentAmmo[nCnt] == nullptr)
 		{
-			m_pCurrentAmmo[nCnt] = CNumber_2D::Create(m_CurrentAmmoPos, CURRENT_AMMO_SIZE);
+			m_pCurrentAmmo[nCnt] = CNumber_2D::Create(m_CurrentAmmoPos, CURRENT_AMMO_SIZE,new CNumber_2D);
 			//座標をずらす
 			m_CurrentAmmoPos.x -= CURRENT_AMMO_DIGIT_SHIFT;
 		}
 
 		if (m_pDefaultAmmo[nCnt] == nullptr)
 		{
-			m_pDefaultAmmo[nCnt] = CNumber_2D::Create(m_DefaultAmmoPos, DEFAULT_AMMO_SIZE);
+			m_pDefaultAmmo[nCnt] = CNumber_2D::Create(m_DefaultAmmoPos, DEFAULT_AMMO_SIZE, new CNumber_2D);
 			//座標をずらす
 			m_DefaultAmmoPos.x -= DEFAULT_AMMO_DIGIT_SHIFT;
 		}

@@ -36,6 +36,7 @@ CBossEnemy::~CBossEnemy()
 	if (m_pBossState != nullptr)
 	{
 		delete m_pBossState;
+		m_pBossState = nullptr;
 	}
 
 	//各行動の破棄
@@ -187,7 +188,7 @@ void CBossEnemy::Update()
 
 	ProcessState(); //各ステートの実行処理
 
-	Motion(GetNumParts()); //モーション処理
+	Motion(); //モーション処理
 
 	for (int nCnt = INT_ZERO; nCnt < GetNumParts(); ++nCnt)
 	{
@@ -260,6 +261,10 @@ void CBossEnemy::ChangeState(CBossState* state)
 		m_pBossState = state;
 		//最初の一回だけ呼びたい関数を実行
 		m_pBossState->Start(this);
+	}
+	if (m_pBossState == nullptr)
+	{
+		delete state;
 	}
 }
 
@@ -340,7 +345,7 @@ void CBossEnemy::ColisionPlayer()
 
 			if (pPlayer->GetEnemyColision())
 			{//プレイヤーがエネミーと当たる状態のとき
-				CheckColisionPlayer(pPlayer, nPartsCnt, pos, Minpos, Maxpos);
+				CheckColisionPlayer(pPlayer, pos, Minpos, Maxpos);
 			}
 		}
 	}
@@ -349,7 +354,7 @@ void CBossEnemy::ColisionPlayer()
 //=============================================
 //プレイヤーとの当たり判定チェック
 //=============================================
-void CBossEnemy::CheckColisionPlayer(CActivePlayer* pPlayer, int nPartsCnt, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos)
+void CBossEnemy::CheckColisionPlayer(CActivePlayer* pPlayer, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos)
 {
 	for (int nPartsCnt = INT_ZERO; nPartsCnt < pPlayer->GetNumParts(); ++nPartsCnt)
 	{//パーツ数回す

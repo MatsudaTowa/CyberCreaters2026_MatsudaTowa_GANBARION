@@ -104,7 +104,6 @@ CBlock_Piece* CBlock_Piece::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot, D3DXVECTOR3
 	pPiece->SetPos({ pos .x + pos_shift_x(random),0.2f,pos.z + pos_shift_z(random)}); //pos設定
 	pPiece->SetRot(rot); //rot設定
 	pPiece->SetScale(scale); //スケール設定
-	//pPiece->BindTexture(m_pTextureTemp);
 
 	//Xファイル読み込み
 	pPiece->BindXFile(pModel->GetModelInfo(pModel->Regist(MODEL_NAME[pPiece->m_shape])).pBuffMat,
@@ -208,7 +207,7 @@ void CMove_Piece::Draw()
 //=============================================
 // コンストラクタ
 //=============================================
-CStack_Piece::CStack_Piece(int nPriority)
+CStack_Piece::CStack_Piece(int nPriority):CBlock_Piece(nPriority)
 {
 }
 

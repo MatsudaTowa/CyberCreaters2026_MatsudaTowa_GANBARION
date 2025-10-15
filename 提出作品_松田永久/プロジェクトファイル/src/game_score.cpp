@@ -68,7 +68,7 @@ HRESULT CGameScore::Init()
 	{
 		if (m_pDeathCnt[nCnt] == nullptr)
 		{
-			m_pDeathCnt[nCnt] = CNumber_2D::Create(m_DeathCntPos, NUM_DEATH_SIZE);
+			m_pDeathCnt[nCnt] = CNumber_2D::Create(m_DeathCntPos, NUM_DEATH_SIZE, new CNumber_2D);
 			//ç¿ïWÇÇ∏ÇÁÇ∑
 			m_DeathCntPos.x -= DIGIT_SHIFT;
 		}

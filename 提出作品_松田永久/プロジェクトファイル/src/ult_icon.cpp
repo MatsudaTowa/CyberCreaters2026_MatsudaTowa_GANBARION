@@ -79,6 +79,7 @@ void CUltIcon::Update()
 		{
 			col = COLOR_WHITE;
 			m_isAddColor = false; //加算終了
+			CManager::GetInstance()->GetSound()->PlaySoundA(CSound::SOUND_LABEL_SE_ULT);
 
 			if (m_pIconEffect == nullptr)
 			{
@@ -149,12 +150,12 @@ void CUltIcon::Reset()
 	}
 }
 
-//テクスチャ初期化
+//テクスチャパス
 const std::string CMediumIcon::TEXTURE_NAME = "data\\TEXTURE\\ult_icon_000.png";
 //=============================================
 //コンストラクタ
 //=============================================
-CMediumIcon::CMediumIcon(int nPriority)
+CMediumIcon::CMediumIcon(int nPriority):CUltIcon(nPriority)
 {
 }
 
@@ -184,7 +185,6 @@ HRESULT CMediumIcon::Init()
 void CMediumIcon::Uninit()
 {
 	CUltIcon::Uninit();
-
 }
 
 //=============================================

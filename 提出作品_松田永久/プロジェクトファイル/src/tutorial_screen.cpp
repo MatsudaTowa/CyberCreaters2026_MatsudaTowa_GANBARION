@@ -70,22 +70,13 @@ void CTutorial_Screen::Update()
 
 	CTexture* pTexture = CManager::GetInstance()->GetTexture();
 
-	CInputPad* pPad = CManager::GetInstance()->GetPad();
-
 	switch (m_UItype)
 	{
 	case CTutorial_Screen::TUTORIAL_UI::UI_TUTORIAL_TXT:
 		BindTexture(pTexture->GetAddress(pTexture->Regist(&TXT_TEXTURE_NAME)));
 		break;
 	case CTutorial_Screen::TUTORIAL_UI::UI_TITLE_PRESS_BUTTON:
-		if (pPad->GetConnet())
-		{//padÚ‘±’†
-			BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_A_TEXTURE_NAME)));
-		}
-		else if (!pPad->GetConnet())
-		{//padÚ‘±‚µ‚Ä‚È‚¢
-			BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
-		}
+		BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
 		break;
 	default:
 		break;
@@ -118,22 +109,13 @@ CTutorial_Screen* CTutorial_Screen::Create(D3DXVECTOR3 pos, D3DXVECTOR2 size, TU
 
 	pTutorialScreen->m_UItype = type;	//ƒ^ƒCƒv‘ã“ü
 
-	CInputPad* pPad = CManager::GetInstance()->GetPad();
-
 	switch (pTutorialScreen->m_UItype)
 	{
 	case CTutorial_Screen::TUTORIAL_UI::UI_TUTORIAL_TXT:
 		pTutorialScreen->BindTexture(pTexture->GetAddress(pTexture->Regist(&TXT_TEXTURE_NAME)));
 		break;
 	case CTutorial_Screen::TUTORIAL_UI::UI_TITLE_PRESS_BUTTON:
-		if (pPad->GetConnet())
-		{
-			pTutorialScreen->BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_A_TEXTURE_NAME)));
-		}
-		else if (!pPad->GetConnet())
-		{
-			pTutorialScreen->BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
-		}
+		pTutorialScreen->BindTexture(pTexture->GetAddress(pTexture->Regist(&BUTTON_ENTER_TEXTURE_NAME)));
 		break;
 	default:
 		break;

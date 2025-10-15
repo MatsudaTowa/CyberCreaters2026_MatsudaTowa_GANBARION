@@ -16,8 +16,6 @@
 class CPauseSelectContinue : public CPauseSelect
 {
 public:
-	static const int PRIORITY = 21;  //描画順
-
 	/**
 	 * @brief コンストラクタ
 	 * @param [in]プライオリティ

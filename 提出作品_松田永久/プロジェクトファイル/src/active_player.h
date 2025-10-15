@@ -20,9 +20,7 @@
 #include "gun_icon.h"
 #include "player_state.h"
 #include "ult.h"
-#include "smoke_UI.h"
 #include "gauge.h"
-#include "blink_UI.h"
 
 //=============================================
 // 前方宣言
@@ -34,6 +32,7 @@ class CUlt_UI;
 class CUlt;
 class CSmoke_UI;
 class CBlink_UI;
+class CReload_UI;
 
 /**
 * @brief 動くプレイヤークラス
@@ -74,6 +73,11 @@ public:
 	void Draw()override;
 
 	/**
+	 * @brief リロード
+	 */
+	void Reload()override;
+
+	/**
 	 * @brief ダメージ
 	 */
 	void Damage(int nDamage);
@@ -89,12 +93,11 @@ public:
 	/**
 	 * @brief 敵の判定チェック
 	 * @param [in]敵の情報
-	 * @param [in]パーツの数
 	 * @param [in]位置情報
 	 * @param [in]最小の位置
 	 * @param [in]最大の位置
 	 */
-	void CheckColisionEnemy(CEnemy* pEnemy, int nPartsCnt, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos);
+	void CheckColisionEnemy(CEnemy* pEnemy, const D3DXVECTOR3 pos, const D3DXVECTOR3 Minpos, const D3DXVECTOR3 Maxpos);
 	/**
 	 * @brief プレイヤー入力処理
 	 */
@@ -322,6 +325,8 @@ private:
 
 	CBlink_UI* m_pBlinkUI;	//ブリンクUI
 
+	CReload_UI* m_pReloadUI;	//リロードUI
+
 	CGunIcon* m_pGunIcon;	//銃のアイコン
 
 	CHitCameraEffect* m_pHitCameraEffect;	//ヒット時のカメラエフェクト
@@ -347,8 +352,6 @@ private:
 	int m_StaminaRecoveryCnt; //スタミナ回復カウント
 
 	bool m_isEnemyColision; //エネミーとの判定をとるか
-
-	bool m_isRelorad; //リロードするかどうか
 
 	bool m_isSmoke; //スモークを使ったか
 

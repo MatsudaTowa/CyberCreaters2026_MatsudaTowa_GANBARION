@@ -373,10 +373,10 @@ CCharacter::RayHitInfo CBossConfusion::PerformRaycast_Player(D3DXVECTOR3 vector,
 
 		//レイを原点からの差分から飛ばす(yはエネミーから飛ばす際の高さ調整)
 		D3DXVECTOR3 StartRay = {boss->GetPos().x - pPlayer->GetPos().x,boss->GetPos().y + CORRECTION_VALUE_Y,boss->GetPos().z - pPlayer->GetPos().z };
-		for (int nParts = 0; nCnt < pPlayer->GetNumParts(); nCnt++)
+		for (int nParts = 0; nParts < pPlayer->GetNumParts(); nParts++)
 		{
 			//レイを飛ばしプレイヤーと当たるかチェック
-			D3DXIntersect(pPlayer->m_apModel[nCnt]->GetModelInfo(nCnt).pMesh, &StartRay, &vector, &Info.hit, NULL, NULL, NULL, &Info.distance, NULL, NULL);
+			D3DXIntersect(pPlayer->m_apModel[nParts]->GetModelInfo(nParts).pMesh, &StartRay, &vector, &Info.hit, NULL, NULL, NULL, &Info.distance, NULL, NULL);
 			if (Info.hit)
 			{
 				return Info;
@@ -422,11 +422,11 @@ void CBossGunAttack::GunAttack(CBullet::BULLET_ALLEGIANCE Allegiance, CCharacter
 			if (nRateCnt >= gun->GetFireRate())
 			{
 				nRateCnt = INT_ZERO;
-				D3DXVECTOR3 ShotPos = D3DXVECTOR3(character->m_apModel[14]->GetMtxWorld()._41 + sinf(character->GetRot().y + D3DX_PI) * 45.0f,
-					character->m_apModel[14]->GetMtxWorld()._42 + 5.0f, character->m_apModel[14]->GetMtxWorld()._43 + cosf(character->GetRot().y + D3DX_PI) * 45.0f);
+				D3DXVECTOR3 ShotPos = D3DXVECTOR3(character->m_apModel[14]->GetMtxWorld()._41 + sinf(character->GetRot().y + D3DX_PI),
+					character->m_apModel[14]->GetMtxWorld()._42 + CORRECTION_Y, character->m_apModel[14]->GetMtxWorld()._43 + cosf(character->GetRot().y + D3DX_PI));
 
 				D3DXVECTOR3 ShotMove = D3DXVECTOR3(sinf(character->GetRot().y + D3DX_PI) * gun->GetBulletSpeed(),
-					0.0f, cosf(character->GetRot().y + D3DX_PI) * gun->GetBulletSpeed());
+					FLOAT_ZERO, cosf(character->GetRot().y + D3DX_PI) * gun->GetBulletSpeed());
 				//弾発射
 				gun->m_pShot->Shot(ShotPos, ShotMove, gun->GetSize(), gun->GetDamage(), Allegiance, gun);					
 			}
@@ -617,27 +617,6 @@ void CBossTackle::LookAtPlayer(CCharacter* character)
 //=============================================
 //コンストラクタ
 //=============================================
-CBossStan::CBossStan()
-{
-}
-
-//=============================================
-//デストラクタ
-//=============================================
-CBossStan::~CBossStan()
-{
-}
-
-//=============================================
-//スタン処理
-//=============================================
-void CBossStan::Stan(CBossEnemy* boss)
-{
-}
-
-//=============================================
-//コンストラクタ
-//=============================================
 CBossSearch::CBossSearch()
 {
 }
@@ -820,11 +799,11 @@ void CBossRampage::Rampage(CBossEnemy* boss)
 		}
 
 		++m_MoveIdx; //位置カウントアップ
-		if (m_MoveIdx > NUM_TARGETPOINT)
+		if (m_MoveIdx >= NUM_TARGETPOINT)
 		{
 			boss->SetMove(VEC3_RESET_ZERO);
 
-			m_LapCnt++; //周回数カウントアップ
+			++m_LapCnt; //周回数カウントアップ
 			m_MoveIdx = INT_ZERO; //初期位置に
 		}
 		if (m_LapCnt >= NUM_RAPS)

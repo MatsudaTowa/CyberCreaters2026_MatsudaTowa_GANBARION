@@ -42,7 +42,7 @@ HRESULT CScore::Init()
 	{
 		if (m_pNumber[nCnt] == nullptr)
 		{
-			m_pNumber[nCnt] = CNumber_2D::Create(m_pos, m_size);
+			m_pNumber[nCnt] = CNumber_2D::Create(m_pos, m_size, new CNumber_2D);
 			//座標をずらす
 			m_pos.x -= m_DigitShift;
 		}
@@ -70,7 +70,7 @@ void CScore::Uninit()
 //=============================================
 void CScore::Update()
 {
-	SetScore(m_nScore);
+	SetScore();
 }
 
 //=============================================
@@ -108,7 +108,7 @@ void CScore::Reset()
 //=============================================
 //スコア設定
 //=============================================
-void CScore::SetScore(int nScore)
+void CScore::SetScore()
 {
 	//テクスチャ座標設定
 	int a_PosTexU[NUM_DIGIT];

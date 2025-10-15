@@ -98,9 +98,8 @@ public:
 	void Load_Parts(const char* FileName);
 	/**
 	 * @brief モーション処理
-	 * @param [in]パーツ数
 	 */
-	void Motion(int NumParts);
+	void Motion();
 	/**
 	 * @brief モーション設定
 	 * @param [in]どのモーションか
@@ -110,6 +109,10 @@ public:
 	 * @brief 重力処理
 	 */
 	void Gravity();
+	/**
+	 * @brief リロード
+	 */
+	virtual void Reload() = 0;
 	/**
 	 * @brief ジャンプ処理
 	 */
@@ -172,6 +175,15 @@ public:
 	inline void SetLanding(bool bLanding)
 	{
 		m_bLanding = bLanding;
+	}
+
+	/**
+	 * @brief リロードしてるか設定
+	 * @param [in]リロードしているか
+	 */
+	inline void SetReload(bool bReload)
+	{
+		m_bReload = bReload;
 	}
 
 	/**
@@ -295,7 +307,7 @@ public:
 	 * @brief 移動量取得
 	 * @return 移動量
 	 */
-	inline D3DXVECTOR3& GetMove()
+	inline D3DXVECTOR3 GetMove()
 	{
 		return m_move;
 	}
@@ -322,16 +334,25 @@ public:
 	 * @brief 着地してるか取得
 	 * @return 着地してるか
 	 */
-	inline bool& GetLaunding()
+	inline bool GetLaunding()
 	{
 		return m_bLanding;
+	}
+
+	/**
+	 * @brief リロードしてるか取得
+	 * @return リロードしてるか
+	 */
+	inline bool GetReload()
+	{
+		return m_bReload;
 	}
 
 	/**
 	 * @brief モーション終了してるか取得
 	 * @return モーション終了フラグ
 	 */
-	inline bool& GetFinish()
+	inline bool GetFinish()
 	{
 		return m_bLoopFinish;
 	}
@@ -340,7 +361,7 @@ public:
 	 * @brief 体力取得
 	 * @return 体力
 	 */
-	inline int& GetLife()
+	inline int GetLife()
 	{
 		return m_nLife;
 	}
@@ -349,7 +370,7 @@ public:
 	 * @brief パーツ数取得
 	 * @return パーツ数
 	 */
-	inline int& GetNumParts()
+	inline int GetNumParts()
 	{
 		return m_PartsCnt;
 	}
@@ -357,7 +378,7 @@ public:
 	 * @brief スピード取得
 	 * @return スピード
 	 */
-	inline float& GetSpeed()
+	inline float GetSpeed()
 	{
 		return m_Speed;
 	}
@@ -366,7 +387,7 @@ public:
 	 * @brief ステート取得
 	 * @return ステート
 	 */
-	inline CHARACTER_STATE& GetState()
+	inline CHARACTER_STATE GetState()
 	{
 		return m_State;
 	}
@@ -375,7 +396,7 @@ public:
 	 * @brief ステート変更カウント取得
 	 * @return ステート変更カウント
 	 */
-	inline int& GetStateCnt()
+	inline int GetStateCnt()
 	{
 		return m_nStateCnt;
 	}
@@ -384,7 +405,7 @@ public:
 	 * @brief ステート変更フレーム取得
 	 * @return ステート変更フレーム
 	 */
-	inline int& GetStateFrame()
+	inline int GetStateFrame()
 	{
 		return m_nStateFrame;
 	}
@@ -393,7 +414,7 @@ public:
 	 * @brief ジャンプ数取得
 	 * @return ジャンプ数
 	 */
-	inline int& GetJumpCnt()
+	inline int GetJumpCnt()
 	{
 		return m_nJumpCnt;
 	}
@@ -402,7 +423,7 @@ public:
 	 * @brief スタンフレーム取得
 	 * @return スタンフレーム
 	 */
-	inline int& GetStanFrame()
+	inline int GetStanFrame()
 	{
 		return m_StanFrame;
 	}
@@ -507,6 +528,8 @@ private:
 	D3DXVECTOR3 m_oldpos; //過去の位置
 	bool m_bLanding; //着地してるかどうか
 	bool m_bLoopFinish; //ループモーションが終わったか
+	bool m_bReload; //リロードするかどうか
+
 	int m_nLife; //体力
 	int m_nShotBullet; //撃った弾数
 	int m_nStateCnt; //ステート切り替え計測カウント

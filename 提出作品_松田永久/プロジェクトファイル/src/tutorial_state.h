@@ -52,4 +52,16 @@ public:
 private:
 };
 
+/** @brief 設定クラス */
+class CTutorialSetting :public CSetting
+{
+public:
+	/**
+	* @brief 設定処理
+	* @param [in]アクティブシーンポインタ
+	*/
+	void Setting(CActiveScene* active_scene) override;
+private:
+};
+
 #endif // !_TUTORIAL_STATE_H_

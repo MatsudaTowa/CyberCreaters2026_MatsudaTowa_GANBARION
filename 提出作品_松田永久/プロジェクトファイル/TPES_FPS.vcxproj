@@ -43,10 +43,12 @@
     <ClCompile Include="src\character.cpp" />
     <ClCompile Include="src\character_behavior.cpp" />
     <ClCompile Include="src\character_state.cpp" />
+    <ClCompile Include="src\close_pause_UI.cpp" />
     <ClCompile Include="src\colision.cpp" />
     <ClCompile Include="src\crosshair.cpp" />
     <ClCompile Include="src\dash_effect.cpp" />
     <ClCompile Include="src\death_icon.cpp" />
+    <ClCompile Include="src\decimal_point.cpp" />
     <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\enemy_behavior.cpp" />
     <ClCompile Include="src\enemy_confusion_UI.cpp" />
@@ -92,6 +94,7 @@
     <ClCompile Include="src\pause_select_continue.cpp" />
     <ClCompile Include="src\pause_select_quit.cpp" />
     <ClCompile Include="src\pause_select_retry.cpp" />
+    <ClCompile Include="src\pause_select_setting.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\player_behavior.cpp" />
     <ClCompile Include="src\player_state.cpp" />
@@ -100,12 +103,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\reload_txt.cpp" />
+    <ClCompile Include="src\reload_UI.cpp" />
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="src\result.cpp" />
     <ClCompile Include="src\result_screen.cpp" />
     <ClCompile Include="src\reticle.cpp" />
     <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\score.cpp" />
+    <ClCompile Include="src\sens_txt_UI.cpp" />
+    <ClCompile Include="src\setting_UI.cpp" />
     <ClCompile Include="src\shadow.cpp" />
     <ClCompile Include="src\smoke.cpp" />
     <ClCompile Include="src\smoke_grenade.cpp" />
@@ -169,10 +176,12 @@
     <ClInclude Include="src\character.h" />
     <ClInclude Include="src\character_behavior.h" />
     <ClInclude Include="src\character_state.h" />
+    <ClInclude Include="src\close_pause_UI.h" />
     <ClInclude Include="src\colision.h" />
     <ClInclude Include="src\crosshair.h" />
     <ClInclude Include="src\dash_effect.h" />
     <ClInclude Include="src\death_icon.h" />
+    <ClInclude Include="src\decimal_point.h" />
     <ClInclude Include="src\enemy.h" />
     <ClInclude Include="src\enemy_behavior.h" />
     <ClInclude Include="src\enemy_confusion_UI.h" />
@@ -218,17 +227,23 @@
     <ClInclude Include="src\pause_select_continue.h" />
     <ClInclude Include="src\pause_select_quit.h" />
     <ClInclude Include="src\pause_select_retry.h" />
+    <ClInclude Include="src\pause_select_setting.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\player_behavior.h" />
     <ClInclude Include="src\player_state.h" />
     <ClInclude Include="src\player_UI_box.h" />
     <ClInclude Include="src\precompile.h" />
+    <ClInclude Include="src\reload_txt.h" />
+    <ClInclude Include="src\reload_UI.h" />
     <ClInclude Include="src\renderer.h" />
     <ClInclude Include="src\result.h" />
     <ClInclude Include="src\result_screen.h" />
     <ClInclude Include="src\reticle.h" />
     <ClInclude Include="src\scene.h" />
     <ClInclude Include="src\score.h" />
+    <ClInclude Include="src\sens_number.h" />
+    <ClInclude Include="src\sens_txt_UI.h" />
+    <ClInclude Include="src\setting_UI.h" />
     <ClInclude Include="src\shadow.h" />
     <ClInclude Include="src\smoke.h" />
     <ClInclude Include="src\smoke_grenade.h" />
@@ -348,6 +363,7 @@
       <PrecompiledHeaderFile>precompile.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>precompile.h</ForcedIncludeFiles>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -366,6 +382,7 @@
       <PrecompiledHeaderFile>precompile.h</PrecompiledHeaderFile>
       <ForcedIncludeFiles>precompile.h</ForcedIncludeFiles>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -380,6 +397,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -394,6 +412,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

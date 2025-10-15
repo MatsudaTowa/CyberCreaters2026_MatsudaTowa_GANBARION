@@ -149,6 +149,11 @@ void CCharacter::Update()
 		m_move *= FLOAT_ONE - MOVE_FRICTION;
 	}
 
+	if (m_bReload)
+	{
+		Reload();
+	}
+
 	//過去の位置に今の位置を代入
 	m_oldpos = pos;
 
@@ -162,7 +167,7 @@ void CCharacter::Update()
 	m_pShadow->SetSize(m_ShadowSize);
 
 	//影の位置設定
-	m_pShadow->SetPos({ GetPos().x,SHADOW_POS_Y,GetPos().z });
+	m_pShadow->SetPos({ pos.x,SHADOW_POS_Y,pos.z });
 
 	//最大最小値取得
 	D3DXVECTOR3 minpos = GetMinPos();
@@ -276,17 +281,27 @@ void CCharacter::Load_Parts(const char* FileName)
 //=============================================
 //モーション処理
 //=============================================
-void CCharacter::Motion(int NumParts)
+void CCharacter::Motion()
 {
 	D3DXVECTOR3 MovePos[MAX_PARTS];
 	D3DXVECTOR3 MoveRot[MAX_PARTS];
+
 
 	int nNextKey = (m_nKeySetCnt + INT_ONE) % m_motion_data.motion_set[m_Motion].nNumKey;
 
 	for (int nMotionCnt = INT_ZERO; nMotionCnt < m_PartsCnt; nMotionCnt++)
 	{
-		MovePos[nMotionCnt] = (m_motion_data.motion_set[m_Motion].keySet[nNextKey].key[nMotionCnt].pos - m_motion_data.motion_set[m_Motion].keySet[m_nKeySetCnt].key[nMotionCnt].pos) / (float)m_motion_data.motion_set[m_Motion].keySet[m_nKeySetCnt].nFrame;
-		MoveRot[nMotionCnt] = (m_motion_data.motion_set[m_Motion].keySet[nNextKey].key[nMotionCnt].rot - m_motion_data.motion_set[m_Motion].keySet[m_nKeySetCnt].key[nMotionCnt].rot) / (float)m_motion_data.motion_set[m_Motion].keySet[m_nKeySetCnt].nFrame;
+		D3DXVECTOR3 current_pos = m_motion_data.motion_set[m_Motion].keySet[m_nKeySetCnt].key[nMotionCnt].pos;
+		D3DXVECTOR3 next_pos = m_motion_data.motion_set[m_Motion].keySet[nNextKey].key[nMotionCnt].pos;
+
+		D3DXVECTOR3 current_rot = m_motion_data.motion_set[m_Motion].keySet[m_nKeySetCnt].key[nMotionCnt].rot;
+		D3DXVECTOR3 next_rot = m_motion_data.motion_set[m_Motion].keySet[nNextKey].key[nMotionCnt].rot;
+
+		float frame = (float)m_motion_data.motion_set[m_Motion].keySet[m_nKeySetCnt].nFrame;
+
+		//現在との差を計算
+		MovePos[nMotionCnt] = (next_pos - current_pos) / frame;
+		MoveRot[nMotionCnt] = (next_rot - current_rot) / frame;
 
 		//位置と方向取得
 		D3DXVECTOR3 pos = m_apModel[nMotionCnt]->GetPos();
@@ -755,5 +770,9 @@ void CCharacter::ChangeState(CCharacterState* state)
 		m_pCharacterState = nullptr;
 		m_pCharacterState = state;
 		m_pCharacterState->Start(this);
+	}
+	else if (m_pCharacterState == nullptr)
+	{
+		delete state;
 	}
 }

@@ -49,12 +49,6 @@ public:
 	void SetCurrentSmoke_UI(CActivePlayer* player);
 
 	/**
-	 * @brief 数字設定
-	 * @param [in]値
-	 */
-	void SetNumber(int nParcent);
-
-	/**
 	 * @brief ゲージリセット
 	 */
 	void Reset();

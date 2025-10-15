@@ -133,7 +133,7 @@ void CNormalMove::NextMove_X(CCharacter* character)
 		m_bRandom = true;
 		if (m_nRight > 0)
 		{//右に進む確率を下げる
-			m_nRight -= 5;
+			m_nRight -= PROBABILITY_SCALE;
 		}
 	}
 	else if (number(random) > m_nRight && number(random) <= m_nLeft)
@@ -141,7 +141,7 @@ void CNormalMove::NextMove_X(CCharacter* character)
 		m_bRandom = false;
 		if (m_nRight < 100)
 		{//右に進む確率をあげる
-			m_nRight += 5;
+			m_nRight += PROBABILITY_SCALE;
 		}
 	}
 }

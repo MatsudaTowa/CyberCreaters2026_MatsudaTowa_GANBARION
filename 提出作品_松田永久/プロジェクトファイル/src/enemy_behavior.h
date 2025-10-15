@@ -133,5 +133,6 @@ public:
 	void LookAtPlayer(CCharacter* character);
 
 private:
+	static constexpr float CORRECTION_Y = 5.0f; //yÇÃï‚ê≥íl
 };
 #endif // !_ENEMY_BEHAVIOR_

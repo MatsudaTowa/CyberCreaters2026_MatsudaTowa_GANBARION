@@ -81,10 +81,10 @@ void CGame::Update()
 //=============================================
 void CGame::ApplyDeathPenalty()
 {
-	for (int nCnt = 0; nCnt < CObject::MAX_OBJECT; nCnt++)
+	for (int i = 0; i < CObject::MAX_OBJECT; i++)
 	{
 		//オブジェクト取得
-		CObject* pObj = CObject::Getobject(CPlayer::PLAYER_PRIORITY, nCnt);
+		CObject* pObj = CObject::Getobject(CPlayer::PLAYER_PRIORITY, i);
 		if (pObj == nullptr)
 		{//ヌルポインタなら
 			//オブジェクトを探し続ける
@@ -102,7 +102,7 @@ void CGame::ApplyDeathPenalty()
 
 		CActivePlayer* pPlayer = dynamic_cast<CActivePlayer*>(pObj);
 
-		for (int nCnt = 0; nCnt < pPlayer->GetDeathCnt(); nCnt++)
+		for (int j = 0; j < pPlayer->GetDeathCnt(); j++)
 		{
 			CScore* pScore = CWave::GetScore();
 
@@ -113,7 +113,7 @@ void CGame::ApplyDeathPenalty()
 				if (pScore->GetScore() <= INT_ZERO)
 				{//0を下回ったら
 					//スコア0に
-					pScore->SetScore(INT_ZERO);
+					pScore->SetScore();
 				}
 			}
 		}

@@ -66,7 +66,7 @@ HRESULT CLife_UI::Init()
 	{
 		if (m_pNumber[nCnt] == nullptr)
 		{
-			m_pNumber[nCnt] = CNumber_2D::Create(m_NumPos, NUM_SIZE);
+			m_pNumber[nCnt] = CNumber_2D::Create(m_NumPos, NUM_SIZE, new CNumber_2D);
 			//ç¿ïWÇÇ∏ÇÁÇ∑
 			m_NumPos.x -= DIGIT_SHIFT;
 		}

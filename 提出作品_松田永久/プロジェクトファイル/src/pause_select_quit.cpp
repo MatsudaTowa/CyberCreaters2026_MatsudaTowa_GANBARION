@@ -12,7 +12,7 @@ const std::string CPauseSelectQuit::TEXTURE_NAME = "data\\TEXTURE\\Quit.png";
 //=============================================
 //コンストラクタ
 //=============================================
-CPauseSelectQuit::CPauseSelectQuit(int nPriority)
+CPauseSelectQuit::CPauseSelectQuit(int nPriority):CPauseSelect(nPriority)
 {
 }
 

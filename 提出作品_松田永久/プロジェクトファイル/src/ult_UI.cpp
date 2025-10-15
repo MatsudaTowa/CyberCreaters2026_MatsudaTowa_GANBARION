@@ -91,14 +91,6 @@ void CUlt_UI::Update()
 	}
 }
 
-//=============================================
-// UI設定
-//=============================================
-void CUlt_UI::SetCurrentUlt_UI(CActivePlayer* player)
-{
-	//割合を出すためにfloatにキャスト
-	int Parcent = ((float)player->GetUlt()->GetCoolTimeCnt() / (float)player->GetUlt()->GetCoolTime()) * 100;
-}
 
 //=============================================
 // リセット関数(ultが使われたときに呼ばれる)

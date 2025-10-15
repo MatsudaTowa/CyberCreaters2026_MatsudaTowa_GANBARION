@@ -62,31 +62,6 @@ CColision::COLISION CColision::CheckColision_X(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 
 }
 
 //=============================================
-//モデルとポリゴン当たり判定_Xチェック関数
-//=============================================
-CColision::COLISION CColision::CheckColision_X(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 Apos, D3DXVECTOR3 AMinpos, D3DXVECTOR3 AMaxpos, D3DXVECTOR3 Bpos, D3DXVECTOR3 Bsize)
-{
-	//if (Aoldpos.x + AMaxpos.x <= Bpos.x
-	//	&& Apos.x + AMaxpos.x > Bpos.x
-	//	&& Apos.z + AMinpos.z > Bpos.z - Bsize.z
-	//	&& Apos.z + AMaxpos.z < Bpos.z + Bsize.z)
-	//{
-	//	return CColision::COLISION::COLISON_X;
-	//}
-	//else if (Aoldpos.x + AMaxpos.x >= Bpos.x
-	//	&& Apos.x + AMaxpos.x < Bpos.x
-	//	&& Apos.z + AMinpos.z > Bpos.z - Bsize.z
-	//	&& Apos.z + AMaxpos.z < Bpos.z + Bsize.z)
-	//{
-	//	return CColision::COLISION::COLISON_X;
-	//}
-	//else
-	{
-		return CColision::COLISION::COLISON_NONE;
-	}
-}
-
-//=============================================
 //モデル同士当たり判定_Xチェック関数
 //=============================================
 CColision::COLISION CColision::CheckColision_X(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 Apos, D3DXVECTOR3 AMinpos, D3DXVECTOR3 AMaxpos, D3DXVECTOR3 Bpos, D3DXVECTOR3 BMinpos, D3DXVECTOR3 BMaxpos)
@@ -117,10 +92,8 @@ CColision::COLISION CColision::CheckColision_X(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 
 			return CColision::COLISION::COLISON_NONE;
 		}
 	}
-	else
-	{
-		return CColision::COLISION::COLISON_NONE;
-	}
+
+	return CColision::COLISION::COLISON_NONE;
 }
 
 //=============================================
@@ -158,10 +131,9 @@ CColision::COLISION CColision::CheckColision_Y(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 
 			return CColision::COLISION::COLISON_NONE;
 		}
 	}
-	else
-	{
-		return CColision::COLISION::COLISON_NONE;
-	}
+
+	return CColision::COLISION::COLISON_NONE;
+	
 }
 
 //=============================================
@@ -199,10 +171,8 @@ CColision::COLISION CColision::CheckColision_Y(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 
 			return CColision::COLISION::COLISON_NONE;
 		}
 	}
-	else
-	{
-		return CColision::COLISION::COLISON_NONE;
-	}
+
+	return CColision::COLISION::COLISON_NONE;
 }
 
 //=============================================
@@ -527,6 +497,8 @@ CColision::COLISION CColision::CheckPolygonFillColision(D3DXVECTOR3 Apos, D3DXVE
 			return CColision::COLISION::COLISON_NONE;
 		}
 	}
+
+	return CColision::COLISION::COLISON_NONE;
 }
 
 //=============================================

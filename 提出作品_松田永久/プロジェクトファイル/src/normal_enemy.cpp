@@ -77,7 +77,7 @@ void CNormalEnemy::Uninit()
 void CNormalEnemy::Update()
 {
 	CEnemy::Update();
-	Motion(GetNumParts()); //モーション処理
+	Motion(); //モーション処理
 }
 
 //=============================================

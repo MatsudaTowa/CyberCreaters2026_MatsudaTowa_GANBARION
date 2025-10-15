@@ -14,7 +14,7 @@ const D3DXVECTOR3 CBrokenSmoke::SIZE = { 30.0f,30.0f,0.0f };
 //=============================================
 //コンストラクタ
 //=============================================
-CBrokenSmoke::CBrokenSmoke(int nPriority)
+CBrokenSmoke::CBrokenSmoke(int nPriority):CSmoke(nPriority)
 {
 }
 

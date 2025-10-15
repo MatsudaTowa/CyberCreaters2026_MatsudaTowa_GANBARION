@@ -83,6 +83,12 @@
     <Filter Include="result\title">
       <UniqueIdentifier>{18d3971a-dc4a-4809-96d8-be0d2cae136c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="active_scene\UI\Setting">
+      <UniqueIdentifier>{5b8831c1-8642-49eb-91d5-156ec7270a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="active_scene\UI\reload">
+      <UniqueIdentifier>{5e91a573-85e2-4455-9829-c9820db09d6b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\active_player.cpp">
@@ -144,9 +150,6 @@
     </ClCompile>
     <ClCompile Include="src\enemy_behavior.cpp">
       <Filter>active_scene\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\enemy_confusion_UI.cpp">
-      <Filter>active_scene\UI</Filter>
     </ClCompile>
     <ClCompile Include="src\enemy_reaction_UI.cpp">
       <Filter>active_scene\UI</Filter>
@@ -448,6 +451,30 @@
     <ClCompile Include="src\tutorial_state.cpp">
       <Filter>active_scene\tutorial</Filter>
     </ClCompile>
+    <ClCompile Include="src\pause_select_setting.cpp">
+      <Filter>active_scene\UI\pause</Filter>
+    </ClCompile>
+    <ClCompile Include="src\setting_UI.cpp">
+      <Filter>active_scene\UI\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="src\enemy_confusion_UI.cpp">
+      <Filter>active_scene\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\decimal_point.cpp">
+      <Filter>obj</Filter>
+    </ClCompile>
+    <ClCompile Include="src\close_pause_UI.cpp">
+      <Filter>active_scene\UI\pause</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sens_txt_UI.cpp">
+      <Filter>active_scene\UI\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="src\reload_UI.cpp">
+      <Filter>active_scene\UI\reload</Filter>
+    </ClCompile>
+    <ClCompile Include="src\reload_txt.cpp">
+      <Filter>active_scene\UI\reload</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\action_UI.h">
@@ -630,9 +657,6 @@
     <ClInclude Include="src\ult_icon.h">
       <Filter>active_scene\UI</Filter>
     </ClInclude>
-    <ClInclude Include="src\ult_camera_effect.h">
-      <Filter>active_scene\effect</Filter>
-    </ClInclude>
     <ClInclude Include="src\ult_icon_effect.h">
       <Filter>active_scene\UI</Filter>
     </ClInclude>
@@ -685,9 +709,6 @@
       <Filter>active_scene\enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\death_icon.h">
-      <Filter>active_scene\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="src\enemy_confusion_UI.h">
       <Filter>active_scene\UI</Filter>
     </ClInclude>
     <ClInclude Include="src\enemy_reaction_UI.h">
@@ -812,6 +833,36 @@
     </ClInclude>
     <ClInclude Include="src\tutorial_state.h">
       <Filter>active_scene\tutorial</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pause_select_setting.h">
+      <Filter>active_scene\UI\pause</Filter>
+    </ClInclude>
+    <ClInclude Include="src\setting_UI.h">
+      <Filter>active_scene\UI\Setting</Filter>
+    </ClInclude>
+    <ClInclude Include="src\enemy_confusion_UI.h">
+      <Filter>active_scene\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sens_number.h">
+      <Filter>active_scene\UI\Setting</Filter>
+    </ClInclude>
+    <ClInclude Include="src\decimal_point.h">
+      <Filter>obj</Filter>
+    </ClInclude>
+    <ClInclude Include="src\close_pause_UI.h">
+      <Filter>active_scene\UI\pause</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sens_txt_UI.h">
+      <Filter>active_scene\UI\Setting</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ult_camera_effect.h">
+      <Filter>active_scene\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\reload_UI.h">
+      <Filter>active_scene\UI\reload</Filter>
+    </ClInclude>
+    <ClInclude Include="src\reload_txt.h">
+      <Filter>active_scene\UI\reload</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

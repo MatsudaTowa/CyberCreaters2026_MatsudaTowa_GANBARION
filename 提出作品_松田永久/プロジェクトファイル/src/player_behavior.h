@@ -55,6 +55,8 @@ public:
 private:
 	//射撃時の移動減算の値
 	static constexpr float MOVE_SUBTRACTION = 0.85f;
+	static constexpr float CORRECTION_Y = 5.0f; //yの補正値
+	static constexpr float RECOIL = 0.002f;		//反動の値
 	/**
 	 * @brief 弾発射
 	 * @param [in]キャラクターポインタ

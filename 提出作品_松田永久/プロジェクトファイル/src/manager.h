@@ -98,12 +98,6 @@ public:
 	CInputMouse* GetMouse();
 
 	/**
-	* @brief パッド取得
-	* @return パッドポインタ
-	*/
-	CInputPad* GetPad();
-
-	/**
 	* @brief カメラ取得
 	* @return カメラポインタ
 	*/
@@ -163,7 +157,6 @@ private:
 	CRenderer* m_pRenderer;
 	CInputKeyboard* m_pKeyboard;
 	CInputMouse* m_pMouse;
-	CInputPad* m_pPad;
 	CCamera* m_pCamera;
 	CLight* m_pLight;
 	CTexture* m_pTexture;

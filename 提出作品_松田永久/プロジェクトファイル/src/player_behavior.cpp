@@ -61,7 +61,9 @@ void CPlayerAttack::GunAttack(CBullet::BULLET_ALLEGIANCE Allegiance, CCharacter*
 
 	int nRateCnt = gun->GetRateCnt();
 
-	if (pMouse->GetPress(0))
+	bool isReload = character->GetReload();
+
+	if (pMouse->GetPress(0) && !isReload)
 	{//ËŒ‚ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ç
 		if (character->GetGunAttack() != nullptr)
 		{
@@ -73,13 +75,14 @@ void CPlayerAttack::GunAttack(CBullet::BULLET_ALLEGIANCE Allegiance, CCharacter*
 			}
 			else
 			{
-				gun->m_pReload->Reload(gun);
+				isReload = true;
+				character->SetReload(isReload);
 			}
 		}
 	}
 	if (pMouse->GetRelease(0))
 	{
-		nRateCnt = CAssultRifle::DEFAULT_AR_FIRE_RATE;
+		nRateCnt = gun->GetFireRate();
 	}
 	gun->SetRateCnt(nRateCnt);
 }
@@ -95,8 +98,8 @@ void CPlayerAttack::ShotBullet(CCharacter* character, CCamera* pCamera, const CB
 		nRateCnt = INT_ZERO;
 
 		//e‚©‚ç”­Ë
-		D3DXVECTOR3 ShotPos = D3DXVECTOR3(character->m_apModel[14]->GetMtxWorld()._41 + sinf(character->GetRot().y + D3DX_PI) * 45.0f,
-			character->m_apModel[14]->GetMtxWorld()._42 + 5.0f, character->m_apModel[14]->GetMtxWorld()._43 + cosf(character->GetRot().y + D3DX_PI) * 45.0f);
+		D3DXVECTOR3 ShotPos = D3DXVECTOR3(character->m_apModel[14]->GetMtxWorld()._41 + sinf(character->GetRot().y + D3DX_PI),
+			character->m_apModel[14]->GetMtxWorld()._42 + CORRECTION_Y, character->m_apModel[14]->GetMtxWorld()._43 + cosf(character->GetRot().y + D3DX_PI));
 
 		//ˆÚ“®—Êİ’è
 		D3DXVECTOR3 ShotMove = D3DXVECTOR3(sinf(pCamera->GetRot().y + D3DX_PI) * -gun->GetBulletSpeed(),
@@ -106,6 +109,19 @@ void CPlayerAttack::ShotBullet(CCharacter* character, CCamera* pCamera, const CB
 		gun->m_pShot->Shot(ShotPos, ShotMove, gun->GetSize(), gun->GetDamage(), Allegiance, gun);
 
 		CManager::GetInstance()->GetSound()->PlaySound(CSound::SOUND_LABEL_SE_SHOT);
+
+		D3DXVECTOR3 camera_rot_move = pCamera->GetRotMove();
+		//c”½“®‚Íˆê’è
+		camera_rot_move.x -= RECOIL;
+
+		//‰¡”½“®‚Íƒ‰ƒ“ƒ_ƒ€
+		std::random_device seed;
+		std::mt19937 random(seed());
+		std::uniform_real_distribution<float> rot(-RECOIL, RECOIL);
+		camera_rot_move.y -= rot(random);
+
+		//”½“®İ’è
+		pCamera->SetRotMove(camera_rot_move);
 	}
 
 	gun->SetRateCnt(nRateCnt);

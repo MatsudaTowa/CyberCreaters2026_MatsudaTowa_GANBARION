@@ -76,7 +76,7 @@ HRESULT CSmoke_UI::Init(CActivePlayer* player)
 	{
 		if (m_pCurrentSmoke[nCnt] == nullptr)
 		{
-			m_pCurrentSmoke[nCnt] = CNumber_2D::Create(m_SmokePos, NUMBER_SIZE);
+			m_pCurrentSmoke[nCnt] = CNumber_2D::Create(m_SmokePos, NUMBER_SIZE, new CNumber_2D);
 			//座標をずらす
 			m_SmokePos.x -= DIGIT_SHIFT;
 		}
@@ -143,13 +143,6 @@ void CSmoke_UI::SetCurrentSmoke_UI(CActivePlayer* player)
 	{//スモークを使っていなかったら
 		m_pIcon->SetColor(COLOR_WHITE);
 	}
-}
-
-//=============================================
-//数字設定
-//=============================================
-void CSmoke_UI::SetNumber(int nParcent)
-{
 }
 
 //=============================================

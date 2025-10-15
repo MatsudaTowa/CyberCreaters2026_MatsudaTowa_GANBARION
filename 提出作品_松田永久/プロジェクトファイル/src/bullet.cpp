@@ -113,7 +113,7 @@ void CBullet::OnActive()
 		break;
 	}
 
-	//当たり判定チェックTODO:レイでやれ
+	//当たり判定チェック
 	bHitCheck = HitBlock();
 
 	//当たり判定チェック変数

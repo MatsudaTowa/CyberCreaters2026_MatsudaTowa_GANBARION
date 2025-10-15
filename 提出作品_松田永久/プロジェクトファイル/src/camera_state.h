@@ -24,17 +24,17 @@ public:
 	 * @brief 自由視点
 	 * @param [in]カメラポインタ
 	 */
-	virtual void FreeView(CCamera* camera);
+	virtual void FreeView([[maybe_unused]] CCamera* camera);
 	/**
 	 * @brief 三人称視点
 	 * @param [in]カメラポインタ
 	 */
-	virtual void ThirdView(CCamera* camera);
+	virtual void ThirdView([[maybe_unused]] CCamera* camera);
 	/**
 	 * @brief ウルト視点
 	 * @param [in]カメラポインタ
 	 */
-	virtual void Ult(CCamera* camera);
+	virtual void Ult([[maybe_unused]] CCamera* camera);
 };
 
 //=============================================

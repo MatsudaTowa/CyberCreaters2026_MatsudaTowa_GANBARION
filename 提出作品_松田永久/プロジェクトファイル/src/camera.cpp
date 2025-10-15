@@ -90,8 +90,6 @@ void CCamera::Update()
 	{
 		return;
 	}
-	//キーボード情報取得
-	CInputKeyboard* pKeyboard = CManager::GetInstance()->GetKeyboard();
 
 	if (m_pCameraState != nullptr)
 	{
@@ -154,6 +152,11 @@ void CCamera::Update()
 	m_moveR.x += (FLOAT_ZERO - m_moveR.x) * DAMPING_COEFFICIENT;
 	m_moveR.y += (FLOAT_ZERO - m_moveR.y) * DAMPING_COEFFICIENT;
 	m_moveR.z += (FLOAT_ZERO - m_moveR.z) * DAMPING_COEFFICIENT;
+
+	m_rot += m_rotmove;
+
+	//移動量を更新(減速）
+	m_rotmove *= FLOAT_ONE - ROT_MOVE_FRICTION;
 
 }
 
@@ -292,6 +295,10 @@ void CCamera::ChangeCameraState(CCameraState* state)
 	{
 		delete m_pCameraState;
 		m_pCameraState = state;
+	}
+	else if (m_pCameraState == nullptr)
+	{
+		delete state;
 	}
 }
 

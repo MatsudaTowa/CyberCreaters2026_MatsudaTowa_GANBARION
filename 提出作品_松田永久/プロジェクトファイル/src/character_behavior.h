@@ -25,16 +25,16 @@ public:
 	/**
 	 * @brief コンストラクタ
 	 */
-	CMove();
+	CMove() {};
 	/**
 	 * @brief デストラクタ
 	 */
-	virtual ~CMove();
+	virtual ~CMove() {};
 	/**
 	 * @brief 移動
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void Move(CCharacter*character) = 0;
+	virtual void Move([[maybe_unused]] CCharacter*character) = 0;
 protected:
 };
 
@@ -47,16 +47,16 @@ public:
 	/**
 	 * @brief コンストラクタ
 	 */
-	CStan();
+	CStan() {};
 	/**
 	 * @brief デストラクタ
 	 */
-	virtual ~CStan();
+	virtual ~CStan() {};
 	/**
 	 * @brief スタン
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void Stan(CCharacter* character);
+	virtual void Stan([[maybe_unused]] CCharacter* character) {};
 private:
 };
 
@@ -69,17 +69,17 @@ public:
 	/**
 	 * @brief コンストラクタ
 	 */
-	CConfusion();
+	CConfusion() {};
 	/**
 	 * @brief デストラクタ
 	 */
-	virtual ~CConfusion();
+	virtual ~CConfusion() {};
 	/**
 	 * @brief 混乱
 	 * @param [in]キャラクターポインタ
 	 * @param [in]回転開始位置
 	 */
-	virtual void Confusion(CCharacter* character, float StartRot_y);
+	virtual void Confusion([[maybe_unused]] CCharacter* character, [[maybe_unused]] float StartRot_y) {};
 private:
 };
 
@@ -92,16 +92,16 @@ public:
 	/**
 	 * @brief コンストラクタ
 	 */
-	CGunAttack();
+	CGunAttack() {};
 	/**
 	 * @brief デストラクタ
 	 */
-	virtual ~CGunAttack();
+	virtual ~CGunAttack() {};
 	/**
 	 * @brief 銃の攻撃
 	 * @param [in]どっちの弾か
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void GunAttack(CBullet::BULLET_ALLEGIANCE Allegiance,CCharacter* character) = 0;
+	virtual void GunAttack([[maybe_unused]] CBullet::BULLET_ALLEGIANCE Allegiance, [[maybe_unused]] CCharacter* character) = 0;
 };
 #endif

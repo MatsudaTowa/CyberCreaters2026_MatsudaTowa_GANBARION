@@ -24,60 +24,60 @@ public:
 	/**
 	 * @brief コンストラクタ
 	 */
-	CBossState();
+	CBossState() {};
 	/**
 	 * @brief デストラクタ
 	 */
-	virtual ~CBossState();
+	virtual ~CBossState() {};
 	/**
 	 * @brief 最初に呼ばれる関数
 	 * @param ボスのポインタ
 	 */
-	virtual void Start(CBossEnemy* boss);
+	virtual void Start([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief 最後に呼ばれる関数
 	 * @param ボスのポインタ
 	 */
-	virtual void End(CBossEnemy* boss);
+	virtual void End([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief 追跡
 	 * @param ボスのポインタ
 	 */
-	virtual void Chase(CBossEnemy* boss);
+	virtual void Chase([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief スタン
 	 * @param ボスのポインタ
 	 */
-	virtual void Stan(CBossEnemy* boss);
+	virtual void Stan([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief 徘徊
 	 * @param ボスのポインタ
 	 */
-	virtual void Wandering(CBossEnemy* boss);
+	virtual void Wandering([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief 混乱
 	 * @param ボスのポインタ
 	 */
-	virtual void Confusion(CBossEnemy* boss);
+	virtual void Confusion([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief タックル
 	 * @param ボスのポインタ
 	 */
-	virtual void Tackle(CBossEnemy* boss);
+	virtual void Tackle([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief 探索
 	 * @param ボスのポインタ
 	 */
-	virtual void Search(CBossEnemy* boss);
+	virtual void Search([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief 暴走
 	 * @param ボスのポインタ
 	 */
-	virtual void Rampage(CBossEnemy* boss);
+	virtual void Rampage([[maybe_unused]] CBossEnemy* boss) {};
 	/**
 	 * @brief デバッグ表示
 	 */
-	virtual void DrawDebug();
+	virtual void DrawDebug() {};
 };
 
 //=============================================
@@ -118,12 +118,12 @@ public:
 	 * @brief 最初
 	 * @param ボスのポインタ
 	 */
-	void Start(CBossEnemy* boss) override;
+	void Start([[maybe_unused]] CBossEnemy* boss) override;
 	/**
 	 * @brief 最後に呼ばれる関数
 	 * @param ボスのポインタ
 	 */
-	void End(CBossEnemy* boss) override;
+	void End([[maybe_unused]] CBossEnemy* boss) override;
 	/**
 	 * @brief スタン
 	 * @param ボスのポインタ
@@ -223,7 +223,7 @@ public:
 	 * @brief 最初
 	 * @param ボスのポインタ
 	 */
-	void Start(CBossEnemy* boss) override;
+	void Start([[maybe_unused]] CBossEnemy* boss) override;
 	/**
 	 * @brief 終了
 	 * @param ボスのポインタ
@@ -250,7 +250,7 @@ public:
 	 * @brief 最初
 	 * @param ボスのポインタ
 	 */
-	void Start(CBossEnemy* boss) override;
+	void Start([[maybe_unused]] CBossEnemy* boss) override;
 	/**
 	 * @brief 探索
 	 * @param ボスのポインタ

@@ -13,7 +13,7 @@ const std::string CPauseSelectContinue::TEXTURE_NAME = "data\\TEXTURE\\Continue.
 //=============================================
 //コンストラクタ
 //=============================================
-CPauseSelectContinue::CPauseSelectContinue(int nPriority)
+CPauseSelectContinue::CPauseSelectContinue(int nPriority):CPauseSelect(nPriority)
 {
 }
 

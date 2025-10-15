@@ -11,7 +11,8 @@
 #include "pause_select_continue.h"
 #include "pause_select_retry.h"
 #include "pause_select_quit.h"
-
+#include "setting_UI.h"
+#include "close_pause_UI.h"
 //=============================================
 //前方宣言
 //=============================================
@@ -27,13 +28,19 @@ public:
 	* @brief 通常処理(親では何もしない)
 	* @param [in]アクティブシーンポインタ
 	*/
-	virtual void Normal(CActiveScene* active_scene) {};
+	virtual void Normal([[maybe_unused]] CActiveScene* active_scene) {};
 
 	/**
 	* @brief ポーズ状態処理(親では何もしない)
 	* @param [in]アクティブシーンポインタ
 	*/
-	virtual void Pause(CActiveScene* active_scene) {};
+	virtual void Pause([[maybe_unused]] CActiveScene* active_scene) {};
+
+	/**
+	* @brief 設定状態処理(親では何もしない)
+	* @param [in]アクティブシーンポインタ
+	*/
+	virtual void Setting([[maybe_unused]] CActiveScene* active_scene) {};
 };
 
 /** @brief 通常クラス */
@@ -58,6 +65,7 @@ public:
 	enum PAUSE_SELECT
 	{
 		CONTINUE = 0,
+		SETTING,
 		RETRY,
 		QUIT,
 		MAX
@@ -79,13 +87,13 @@ public:
 	 * @brief ポーズの選択されたUIの更新実行処理
 	 * @param [in]アクティブシーンのポインタ
 	 */
-	virtual void HandlePoseSelection(CActiveScene* active_scene) {};
+	virtual void HandlePoseSelection(CActiveScene* );
 
 	/**
 	 * @brief ポーズキャンセル
 	 * @param [in]アクティブシーンのポインタ
 	 */
-	virtual void CancelPause(CActiveScene* active_scene) {};
+	virtual void CancelPause(CActiveScene* ) {};
 
 	/**
 	 * @brief どれを選択してるか取得
@@ -106,11 +114,49 @@ public:
 		return m_pSelect[idx];
 	}
 private:
-	static const D3DXVECTOR3 POS[MAX];
-
+	static const D3DXVECTOR3 SELECT_POS[MAX];
+	static const D3DXVECTOR3 CLOSE_POS;
+	static const D3DXVECTOR2 CLOSE_SIZE;
 	int m_nSelect;
 	CMask* m_pMask;
+	CClosePauseUI* m_pClosePause;
 	CPauseSelect* m_pSelect[MAX];
+};
+
+/** @brief 設定クラス */
+class CSetting :public CActiveSceneState
+{
+public:
+	/**
+	 * @brief コンストラクタ
+	 */
+	CSetting();
+	/**
+	 * @brief デストラクタ
+	 */
+	~CSetting() override;
+	/**
+	* @brief 設定処理
+	* @param [in]アクティブシーンポインタ
+	*/
+	void Setting(CActiveScene* ) override;
+private:
+	/**
+	 * @brief 感度変更
+	 * @param [in][out]感度
+	 */
+	void ChangeSens(float& sens);
+
+	static const int PRESS_FRAME = 5;	//このフレーム数キーが押されたら数値を進める
+	static constexpr float MIN_SENS = 0.011f;	//最小感度
+	static constexpr float MAX_SENS = 1.00f;	//最大感度
+	static constexpr float CHANGE_SENS = 0.01f;	//感度の変動値
+
+	static const D3DXVECTOR3 CLOSE_POS;
+	static const D3DXVECTOR2 CLOSE_SIZE;
+	CSetting_UI* m_pSettingUI;	//設定UI
+	CClosePauseUI* m_pClosePause;
+	int m_nPressCnt;	//キーのプレスカウント
 };
 
 #endif // !_GAME_STATE_H_

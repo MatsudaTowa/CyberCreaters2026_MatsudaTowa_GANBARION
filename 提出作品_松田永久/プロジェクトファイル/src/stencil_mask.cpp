@@ -13,7 +13,7 @@ const D3DXCOLOR CStencilMask::COLOR = { 1.0f, 0.0f, 0.0f, 0.75f };
 //=============================================
 // コンストラクタ
 //=============================================
-CStencilMask::CStencilMask(int nPriority)
+CStencilMask::CStencilMask(int nPriority):CMask(nPriority)
 {
 }
 

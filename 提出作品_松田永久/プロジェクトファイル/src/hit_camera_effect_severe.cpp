@@ -13,7 +13,7 @@ const std::string CHitCameraEffectSevere::TEXTURE_NAME = "data\\TEXTURE\\hit_cam
 //=============================================
 //コンストラクタ
 //=============================================
-CHitCameraEffectSevere::CHitCameraEffectSevere(int nPriority)
+CHitCameraEffectSevere::CHitCameraEffectSevere(int nPriority):CHitCameraEffect(nPriority)
 {
 }
 

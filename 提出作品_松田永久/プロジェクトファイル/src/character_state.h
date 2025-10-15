@@ -24,28 +24,28 @@ public:
 	 * @brief 最初に呼ばれる関数
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void Start(CCharacter* character);
+	virtual void Start([[maybe_unused]] CCharacter* character) {};
 	/**
 	 * @brief ショット
 	 * @param [in]どっちの弾か
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void Shot(CBullet::BULLET_ALLEGIANCE Allegiance, CCharacter* character); 
+	virtual void Shot([[maybe_unused]] CBullet::BULLET_ALLEGIANCE Allegiance, [[maybe_unused]] CCharacter* character) {};
 	/**
 	 * @brief スタン処理
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void Stan(CCharacter* character);
+	virtual void Stan([[maybe_unused]] CCharacter* character) {};
 	/**
 	 * @brief 混乱
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void Confusion(CCharacter* character);
+	virtual void Confusion([[maybe_unused]] CCharacter* character) {};
 	/**
 	 * @brief 移動
 	 * @param [in]キャラクターポインタ
 	 */
-	virtual void Move(CCharacter* character);
+	virtual void Move([[maybe_unused]] CCharacter* character) {};
 };
 
 //=============================================
@@ -72,7 +72,7 @@ public:
 	 * @brief 最初に呼ばれる関数
 	 * @param [in]キャラクターポインタ
 	 */
-	void Start(CCharacter* character) override;
+	void Start([[maybe_unused]] CCharacter* character) override;
 	/**
 	 * @brief スタン
 	 * @param [in]キャラクターポインタ

@@ -8,7 +8,7 @@
 #include "manager.h"
 
 //色
-const D3DXCOLOR CPauseMask::COLOR = { 0.0f, 0.0f, 0.0f, 0.7f };
+const D3DXCOLOR CPauseMask::COLOR = { 0.0f, 0.0f, 0.0f, 0.9f };
 
 //=============================================
 // コンストラクタ

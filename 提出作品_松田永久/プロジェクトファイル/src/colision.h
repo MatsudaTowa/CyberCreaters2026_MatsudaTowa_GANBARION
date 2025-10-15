@@ -47,17 +47,7 @@ public:
 	 * @return どの方向に当たったか
 	 */
 	COLISION CheckColision_X(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 Apos, D3DXVECTOR3 Asize, D3DXVECTOR3 Bpos, D3DXVECTOR3 Bsize);
-	/**
-	 * @brief モデルとポリゴンの判定_X
-	 * @param [in]当たる側の過去の位置
-	 * @param [in]当たる側の位置
-	 * @param [in]当たる側の最小座標
-	 * @param [in]当たる側の最大座標
-	 * @param [in]当たられる側の位置
-	 * @param [in]当たられる側のサイズ
-	 * @return どの方向に当たったか
-	 */
-	COLISION CheckColision_X(D3DXVECTOR3 Aoldpos, D3DXVECTOR3 Apos, D3DXVECTOR3 AMinpos, D3DXVECTOR3 AMaxpos, D3DXVECTOR3 Bpos, D3DXVECTOR3 Bsize);
+
 	/**
 	 * @brief モデル同士当たり判定_X
 	 * @param [in]当たる側の過去の位置

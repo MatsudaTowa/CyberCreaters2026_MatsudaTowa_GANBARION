@@ -74,10 +74,10 @@ void CNumber_2D::Draw()
 //=============================================
 //¶¬
 //=============================================
-CNumber_2D* CNumber_2D::Create(D3DXVECTOR3 pos, D3DXVECTOR2 size)
+CNumber_2D* CNumber_2D::Create(D3DXVECTOR3 pos, D3DXVECTOR2 size, CNumber_2D* number)
 {
 	CTexture* pTexture = CManager::GetInstance()->GetTexture();
-	CNumber_2D* pNumber = new CNumber_2D;
+	CNumber_2D* pNumber = number;
 
 	// null‚È‚çnull‚ð•Ô‚·
 	if (pNumber == nullptr) { return nullptr; }

@@ -12,7 +12,7 @@ const std::string CPauseSelectRetry::TEXTURE_NAME = "data\\TEXTURE\\Retry.png";
 //=============================================
 //コンストラクタ
 //=============================================
-CPauseSelectRetry::CPauseSelectRetry(int nPriority)
+CPauseSelectRetry::CPauseSelectRetry(int nPriority):CPauseSelect(nPriority)
 {
 }
 

@@ -270,7 +270,7 @@ void CEnemy::MediumUltHit(D3DXVECTOR3 UltPos, int nDamage)
 //=============================================
 CCharacter::RayHitInfo CEnemy::PerformRaycast_Player(D3DXVECTOR3 vector, CCharacter* character)
 {
-	CCharacter::RayHitInfo Info;
+	CCharacter::RayHitInfo Info = {};
 
 	for (int nCnt = 0; nCnt < CObject::MAX_OBJECT; nCnt++)
 	{
@@ -296,10 +296,10 @@ CCharacter::RayHitInfo CEnemy::PerformRaycast_Player(D3DXVECTOR3 vector, CCharac
 
 		//レイを原点からの差分から飛ばす(yはエネミーから飛ばす際の高さ調整)
 		D3DXVECTOR3 StartRay = { character->GetPos().x - pPlayer->GetPos().x,character->GetPos().y,character->GetPos().z - pPlayer->GetPos().z };
-		for (int nParts = 0; nCnt < pPlayer->GetNumParts(); nCnt++)
+		for (int nParts = 0; nParts < pPlayer->GetNumParts(); nParts++)
 		{
 			//レイを飛ばしプレイヤーと当たるかチェック
-			D3DXIntersect(pPlayer->m_apModel[nCnt]->GetModelInfo(nCnt).pMesh, &StartRay, &vector, &Info.hit, NULL, NULL, NULL, &Info.distance, NULL, NULL);
+			D3DXIntersect(pPlayer->m_apModel[nParts]->GetModelInfo(nParts).pMesh, &StartRay, &vector, &Info.hit, NULL, NULL, NULL, &Info.distance, NULL, NULL);
 			if (Info.hit)
 			{
 				return Info;
